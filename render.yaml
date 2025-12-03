@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: trashion-api
+    runtime: python
+    buildCommand: bash build.sh
+    startCommand: python trashion_railway.py --mode both --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: DISCORD_WEBHOOK
+        sync: false
+      - key: SCRAPE_INTERVAL
+        value: 300
+      - key: BUSINESS_START
+        value: 12
+      - key: BUSINESS_END
+        value: 19
+    autoDeploy: true
+    healthCheckPath: /api/health
